@@ -19,6 +19,11 @@ const filterFieldState: StateFilter<FieldState> = (
     focus: state.focus,
     name: state.name,
   };
+
+  if(force) {
+    return result
+  }
+
   const different =
     subscriptionFilter(
       result,
@@ -28,7 +33,7 @@ const filterFieldState: StateFilter<FieldState> = (
       fieldSubscriptionItems as unknown as string[],
       shallowEqualKeys
     ) || !previousState;
-  return different || force ? result : undefined;
+  return different ? result : undefined;
 };
 
 export default filterFieldState; 
